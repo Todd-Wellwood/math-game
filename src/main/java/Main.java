@@ -1,9 +1,14 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
+    static VisualFrame mainFrame;
     public static void main(String[] args) {
+        mainFrame = generateVisualFrame();
+
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter operand Type (+-*/)");
         String operand = scan.next();
@@ -23,6 +28,17 @@ public class Main {
 
             System.out.println(answer == question.solve());
         }
+    }
+
+    private static VisualFrame generateVisualFrame() {
+        VisualFrame display = new VisualFrame();
+        display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        display.add(new VisualPanel(), BorderLayout.CENTER);
+        display.pack();
+        display.setVisible(true);
+        display.setResizable(false);
+
+        return display;
     }
 
     public static void startTimer(){
